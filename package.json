@@ -1,0 +1,117 @@
+{
+  "name": "vscode-efcore-tools",
+  "displayName": "EF Core Tools",
+  "description": "Execute dotnet ef commands with a simple UI",
+  "version": "0.0.1",
+  "publisher": "local",
+  "icon": "media/efcore.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "efcore",
+          "title": "EF Core",
+          "icon": "media/efcore.svg"
+        }
+      ]
+    },
+    "views": {
+      "efcore": [
+        {
+          "type": "webview",
+          "id": "efcore.commands",
+          "name": "Commands",
+          "icon": "media/efcore.svg"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "efcore.quickRun",
+        "title": "EF Core: Quick Run"
+      },
+      {
+        "command": "efcore.addMigration",
+        "title": "EF Core: Add Migration"
+      },
+      {
+        "command": "efcore.updateDatabase",
+        "title": "EF Core: Update Database"
+      },
+      {
+        "command": "efcore.removeMigration",
+        "title": "EF Core: Remove Last Migration"
+      },
+      {
+        "command": "efcore.listMigrations",
+        "title": "EF Core: List Migrations"
+      },
+      {
+        "command": "efcore.dbcontextList",
+        "title": "EF Core: List DbContexts"
+      },
+      {
+        "command": "efcore.scriptMigration",
+        "title": "EF Core: Script Migrations"
+      },
+      {
+        "command": "efcore.dropDatabase",
+        "title": "EF Core: Drop Database"
+      },
+      {
+        "command": "efcore.openTerminal",
+        "title": "EF Core: Open Terminal"
+      },
+      {
+        "command": "efcore.setDefaults",
+        "title": "EF Core: Set Default Projects"
+      }
+    ],
+    "configuration": {
+      "title": "EF Core",
+      "properties": {
+        "efcore.dotnetPath": {
+          "type": "string",
+          "default": "dotnet",
+          "description": "Path to dotnet executable"
+        },
+        "efcore.defaultProject": {
+          "type": "string",
+          "default": "",
+          "description": "Relative path to the target .csproj"
+        },
+        "efcore.defaultStartupProject": {
+          "type": "string",
+          "default": "",
+          "description": "Relative path to the startup .csproj"
+        },
+        "efcore.workDir": {
+          "type": "string",
+          "default": "",
+          "description": "Working directory for commands; defaults to workspace root"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.7.1",
+    "typescript": "^5.6.3"
+  }
+}
