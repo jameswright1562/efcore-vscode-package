@@ -2,7 +2,7 @@
   "name": "vscode-efcore-tools",
   "displayName": "EF Core Tools",
   "description": "Execute dotnet ef commands with a simple UI",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "JamesWright",
   "files": [
     "out/**",
