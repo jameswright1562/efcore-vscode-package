@@ -5,8 +5,10 @@
   "version": "0.0.1",
   "publisher": "JamesWright",
   "files": [
-    "media/efcore.svg",
-    "media/efcore.png"
+    "out/**",
+    "media/**",
+    "README.md",
+    "LICENSE"
   ],
   "icon": "media/efcore.png",
   "repository": {
