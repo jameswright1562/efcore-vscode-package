@@ -2,10 +2,11 @@ import * as vscode from 'vscode'
 import { ensureDotnet, findCsprojFiles, listDbContexts, runEfCommand, getConfig, resolveWorkDir } from './ef'
 
 export class EfSidebarProvider implements vscode.WebviewViewProvider {
-  constructor(private readonly extensionUri: vscode.Uri) {}
+  constructor(private readonly extensionUri: vscode.Uri) { }
   resolveWebviewView(view: vscode.WebviewView) {
     view.webview.options = { enableScripts: true }
     view.webview.html = this.getHtml()
+
     view.webview.onDidReceiveMessage(async msg => {
       const cfg = getConfig()
       const wd = resolveWorkDir()
@@ -27,7 +28,7 @@ export class EfSidebarProvider implements vscode.WebviewViewProvider {
           const dotnet = await ensureDotnet()
           const ctxs = await listDbContexts(dotnet, msg.project, msg.startup, wd)
           view.webview.postMessage({ type: 'contexts', items: ctxs })
-        } catch {}
+        } catch { }
       }
       if (msg.type === 'run') {
         try {
