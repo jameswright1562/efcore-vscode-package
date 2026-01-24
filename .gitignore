@@ -19,3 +19,6 @@ lerna-debug.log*
 coverage/
 .cache/
 .idea/
+**/bin
+**/obj
+**/*.db

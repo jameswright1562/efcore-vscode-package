@@ -18,6 +18,24 @@ on:
       - 'v*.*.*'
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+      - name: Install EF Core Tool
+        run: dotnet tool install --global dotnet-ef
+      - name: Restore Test Project
+        run: dotnet restore efcore-test-project/efcore-test-project.csproj
+      - name: Run Tests
+        run: xvfb-run -a npm test
+
   bump_version:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
