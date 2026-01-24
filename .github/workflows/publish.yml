@@ -77,9 +77,8 @@ jobs:
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
         run: |
-          sed -i 's/"publisher": "JamesWright"/"publisher": "jameswright1562"/' package.json
           npx ovsx publish -p "$OVSX_PAT"
-          sed -i 's/"publisher": "jameswright1562"/"publisher": "JamesWright"/' package.json
+          sed -i 's/"publisher": "JamesWright"/"publisher": "jameswright1562"/' package.json
       - name: Package VSIX
         run: npx vsce package
       - name: Upload VSIX artifact
